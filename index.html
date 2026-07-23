@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Galeria de Assinaturas</title>
+  <style>
+    body {
+      font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f3f4f6;
+      margin: 0;
+      padding: 30px;
+    }
+    h1 {
+      color: #1f2937;
+      margin-bottom: 8px;
+    }
+    p {
+      color: #4b5563;
+      margin-bottom: 24px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      border: 1px solid #e5e7eb;
+    }
+    .card h3 {
+      margin: 0 0 12px 0;
+      font-size: 1rem;
+      color: #111827;
+      text-transform: capitalize;
+    }
+    .card img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border: 1px dashed #cbd5e1;
+      padding: 4px;
+      background: #fafafa;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Galeria de Assinaturas</h1>
+  <p>Clique com o botão direito sobre a imagem e selecione <b>"Copiar imagem"</b> para colar no Outlook Web.</p>
+
+  <div class="grid" id="galeria"></div>
+
+  <script>
+    // 1. Defina a pasta onde estão as imagens dentro do repositório
+    const pasta = "assinaturas/";
+
+    // 2. Coloque aqui os nomes das imagens que você jogou na pasta
+    const imagens = [
+      "Ana Paula (ASPLAN).png",
+      "Assinatura - Anna (DG).png",
+      "Assinatura - Bruno.png",
+      "Assinatura - Eliene.png"
+    ];
+
+    const galeria = document.getElementById("galeria");
+
+    // 3. O JavaScript varre a lista e monta a página sozinho
+    imagens.forEach(arquivo => {
+      // Remove a extensão do arquivo para usar como título da carta
+      const nomePessoa = arquivo.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ");
+
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <h3>${nomePessoa}</h3>
+        <img src="${pasta}${arquivo}" alt="${nomePessoa}">
+      `;
+
+      galeria.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>
