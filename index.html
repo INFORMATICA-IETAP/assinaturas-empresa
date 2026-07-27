@@ -54,10 +54,10 @@
   <div class="grid" id="galeria"></div>
 
   <script>
-    // 1. Defina a pasta onde estão as imagens dentro do repositório
+    // 1. Pasta onde estão as imagens dentro do repositório
     const pasta = "ASSINATURAS/";
 
-    // 2. Coloque aqui os nomes das imagens que você jogou na pasta
+    // 2. Lista com os nomes dos arquivos
     const imagens = [
       "Ana Paula (ASPLAN).png",
       "Assinatura - Anna (DG).png",
@@ -72,21 +72,26 @@
       "Assinatura - Márcia.png",
       "Assinatura - Renata (NSP).png",
       "Assinatura Aline.png",
-      "Assinatura Fabrizzio .png",
+      "Assinatura Fabrizzio .png"
     ];
 
     const galeria = document.getElementById("galeria");
 
-    // 3. O JavaScript varre a lista e monta a página sozinho
+    // 3. O JavaScript varre a lista e monta a página
     imagens.forEach(arquivo => {
-      // Remove a extensão do arquivo para usar como título da carta
+      // Formata o nome para ser exibido no título do card
       const nomePessoa = arquivo.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ");
+
+      // Codifica o nome do arquivo para aceitar espaços e acentos no HTML
+      const arquivoUrl = encodeURIComponent(arquivo);
 
       const card = document.createElement("div");
       card.className = "card";
+      
+      // ?v=${Date.now()} força a busca da imagem atualizada sem cache
       card.innerHTML = `
         <h3>${nomePessoa}</h3>
-        <img src="${pasta}${arquivo}" alt="${nomePessoa}">
+        <img src="${pasta}${arquivoUrl}?v=${Date.now()}" alt="${nomePessoa}">
       `;
 
       galeria.appendChild(card);
